@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - BookStore</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body>
+    <header class="bg-light border-bottom mb-4">
+        <div class="container-fluid d-flex justify-content-between align-items-center p-2">
+            <div class="d-flex align-items-center">
+                <a asp-controller="Home" asp-action="Index" class="">
+                    <img src="~/images/default-book.png" alt="Logo" style="height: 50px;" />
+                </a>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" />
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+
+            <div>
+                <a asp-controller="Auth" asp-action="SignIn" class="btn btn-primary">Sign In</a>
+                <a asp-controller="Auth" asp-action="SignUp" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-top">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    @if (TempData["Menu"] is Dictionary<string, Tuple<string, string>> menuItems)
+                    {
+                        foreach (var item in menuItems)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="@item.Value.Item1"
+                                    asp-action="@item.Value.Item2">@item.Key</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>About Us</h5>
+                    <p>We offer the best products and services for your needs.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li>Email: <a href="mailto:info@example.com" class="text-light">info@example.com</a></li>
+                        <li>Phone: <a href="tel:+1234567890" class="text-light">+123 456 7890</a></li>
+                        <li>Address: <address class="text-light">123 Main Street, City</address>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <small>&copy; @DateTime.Now.Year YourCompany. All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
