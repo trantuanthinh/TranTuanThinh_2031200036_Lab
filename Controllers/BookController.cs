@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace TranTuanThinh_2031200036_Lab4.Controllers
+namespace TranTuanThinh_2031200036_Lab.Controllers
 {
     public class BookController : Controller
     {
