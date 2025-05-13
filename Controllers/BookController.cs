@@ -33,15 +33,32 @@ namespace TranTuanThinh_2031200036_Lab.Controllers
         [Route("Book/ViewAsPdf/{id}")]
         public IActionResult ViewAsPdf(int id)
         {
-            // var book = _context
-            //     .Books.Include(item => item.Author)
-            //     .Include(item => item.Category)
-            //     .FirstOrDefault(item => item.Id == id);
+            var book = _context.Books.FirstOrDefault(b => b.Id == id);
 
-            // if (book == null)
-            // {
-            //     return NotFound();
-            // }
+            if (book == null)
+            {
+                return NotFound("Book not found.");
+            }
+
+            if (string.IsNullOrEmpty(book.PDF))
+            {
+                return NotFound("PDF path is missing for this book.");
+            }
+
+            string pdfPath = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot",
+                "PDF",
+                book.PDF
+            );
+            Console.Write(pdfPath);
+            if (!System.IO.File.Exists(pdfPath))
+            {
+                return NotFound("PDF file not found on the server.");
+            }
+
+            ViewBag.PdfUrl = "/PDF/" + book.PDF;
+            ViewBag.BookTitle = book.Title;
 
             return View();
         }
