@@ -1,12 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace TranTuanThinh_2031200036_Lab.Models
-
 {
     public class Category
     {
+        [Key]
         [Required]
-        public int CategoryId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public required string Name { get; set; }

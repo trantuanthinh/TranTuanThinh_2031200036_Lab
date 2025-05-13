@@ -1,12 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace TranTuanThinh_2031200036_Lab.Models
-
 {
     public class Loan
     {
+        [Key]
         [Required]
-        public int LoanId { get; set; }
+        public required int Id { get; set; }
 
         [Required]
         public int UserId { get; set; }

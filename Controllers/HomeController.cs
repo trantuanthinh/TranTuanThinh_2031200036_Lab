@@ -1,17 +1,15 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TranTuanThinh_2031200036_Lab.DataContext;
 using TranTuanThinh_2031200036_Lab.Models;
 
 namespace TranTuanThinh_2031200036_Lab.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(AppDataContext context, ILogger<HomeController> logger) : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        private readonly AppDataContext _context = context;
+        private readonly ILogger<HomeController> _logger = logger;
 
         public IActionResult Index()
         {
@@ -19,8 +17,8 @@ namespace TranTuanThinh_2031200036_Lab.Controllers
             {
                 new Carousel
                 {
-                    CarouselId = 1,
-                    ImageUrl = "/avatar.jpg",
+                    Id = 1,
+                    ImageUrl = "/avatar17.jpg",
                     Title = "Welcome to Our Library",
                     Description = "Explore thousands of books and resources.",
                     LinkUrl = "/books",
@@ -30,8 +28,8 @@ namespace TranTuanThinh_2031200036_Lab.Controllers
                 },
                 new Carousel
                 {
-                    CarouselId = 2,
-                    ImageUrl = "/avatar.jpg",
+                    Id = 2,
+                    ImageUrl = "/avatar17.jpg",
                     Title = "Author of the Month",
                     Description = "Read works by our featured author.",
                     LinkUrl = "/authors",
@@ -41,8 +39,8 @@ namespace TranTuanThinh_2031200036_Lab.Controllers
                 },
                 new Carousel
                 {
-                    CarouselId = 3,
-                    ImageUrl = "/avatar.jpg",
+                    Id = 3,
+                    ImageUrl = "/avatar17.jpg",
                     Title = "New Arrivals",
                     Description = "Check out the latest books in our collection.",
                     LinkUrl = "/new",
@@ -52,19 +50,23 @@ namespace TranTuanThinh_2031200036_Lab.Controllers
                 },
             };
             ViewData["Carousel"] = carousels;
-            TempData["Menu"] = new Dictionary<string, Tuple<string, string>>
+
+            // ViewData["Carousel"] = _context.Carousels.ToList();
+            var categories = _context.Categories.ToList();
+            var menu = new Dictionary<string, Tuple<string, string>>
             {
                 { "Home", Tuple.Create("Home", "Index") },
-                { "Books", Tuple.Create("Book", "Index") },
-                { "Contact", Tuple.Create("Auth", "SignUp") },
+                { "Admin", Tuple.Create("Home", "Index") },
             };
-            TempData["Books"] = new List<string>
+
+            foreach (var category in categories)
             {
-                "C# Basics",
-                "Learning ASP.NET",
-                "Bootstrap for Beginners",
-                "MVC Mastery",
-            };
+                menu.Add(category.Name, Tuple.Create("Book", "Index"));
+            }
+            ViewData["Menu"] = menu;
+
+            var books = _context.Books.Include(item => item.Author).ToList();
+            ViewData["Books"] = books;
             return View();
         }
 

@@ -21,22 +21,22 @@ namespace TranTuanThinh_2031200036_Lab.DataContext
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasKey(e => e.UserId);
+                entity.HasKey(e => e.Id);
             });
 
             modelBuilder.Entity<Author>(entity =>
             {
-                entity.HasKey(e => e.AuthorId);
+                entity.HasKey(e => e.Id);
             });
 
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.HasKey(e => e.CategoryId);
+                entity.HasKey(e => e.Id);
             });
 
             modelBuilder.Entity<Book>(entity =>
             {
-                entity.HasKey(e => e.BookId);
+                entity.HasKey(e => e.Id);
 
                 entity
                     .HasOne(b => b.Author)
@@ -53,7 +53,7 @@ namespace TranTuanThinh_2031200036_Lab.DataContext
 
             modelBuilder.Entity<Loan>(entity =>
             {
-                entity.HasKey(e => e.LoanId);
+                entity.HasKey(e => e.Id);
 
                 entity
                     .HasOne(l => l.User)
@@ -70,7 +70,7 @@ namespace TranTuanThinh_2031200036_Lab.DataContext
 
             modelBuilder.Entity<Carousel>(entity =>
             {
-                entity.HasKey(c => c.CarouselId);
+                entity.HasKey(c => c.Id);
 
                 entity.Property(c => c.ImageUrl).IsRequired();
                 entity.Property(c => c.Title).HasMaxLength(200).IsRequired();

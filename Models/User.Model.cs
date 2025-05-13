@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace TranTuanThinh_2031200036_Lab.Models
-
 {
     public class User
     {
-        public int UserId { get; set; }
+        [Key]
+        [Required]
+        public int Id { get; set; }
 
         [Required]
         [StringLength(200)]

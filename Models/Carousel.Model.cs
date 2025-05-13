@@ -5,7 +5,7 @@ namespace TranTuanThinh_2031200036_Lab.Models
     public class Carousel
     {
         [Key]
-        public int CarouselId { get; set; }
+        public required int Id { get; set; }
 
         [Required]
         public required string ImageUrl { get; set; } = "/avatar.jpg";

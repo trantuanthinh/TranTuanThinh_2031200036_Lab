@@ -31,16 +31,20 @@
         <nav class="navbar navbar-expand-sm navbar-light bg-white border-top">
             <div class="container-fluid">
                 <ul class="navbar-nav">
-                    @if (TempData["Menu"] is Dictionary<string, Tuple<string, string>> menuItems)
+                    @if (TempData["Menu"] is Dictionary<string, Tuple<string, string>> menuItems && menuItems != null)
                     {
                         foreach (var item in menuItems)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="@item.Value.Item1"
-                                    asp-action="@item.Value.Item2">@item.Key</a>
-                            </li>
+                            if (item.Value != null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="@item.Value.Item1"
+                                        asp-action="@item.Value.Item2">@item.Key</a>
+                                </li>
+                            }
                         }
                     }
+
                 </ul>
             </div>
         </nav>

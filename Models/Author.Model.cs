@@ -4,8 +4,9 @@ namespace TranTuanThinh_2031200036_Lab.Models
 {
     public class Author
     {
+        [Key]
         [Required]
-        public int AuthorId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(100)]
