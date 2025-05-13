@@ -11,20 +11,21 @@
             {
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        @* <img src="@book.ImageUrl" class="card-img-top" alt="@book.Title"
-                            style="height: 250px; object-fit: cover;" /> *@
-                        <img src=" /avatar17.jpg" class="card-img-top" alt="@book.Title"
-                            style="height: 250px; object-fit: cover;" />
+                        <a asp-controller="Book" asp-action="Detail" asp-route-id="@book.Id">
+                            <img src=" /avatar17.jpg" class="card-img-top" alt="@book.Title"
+                                style="height: 250px; object-fit: cover;" />
+                        </a>
 
                         <div class="card-body">
                             <h5 class="card-title">@book.Title</h5>
                             <h3 class="card-title">@book.Author?.FirstName @book.Author?.LastName</h3>
 
-                            <p class="card-text">@((book.Description != null) ? book.Description.Substring(0,
-                                                        Math.Min(book.Description.Length, 100)) + "..." : "")</p>
-                    <a asp-controller="Book" asp-action="Detail" asp-route-id="@book.Id" class="btn btn-primary">Đọc
-                        Sách
-                        Online</a>
+                            <p class="card-text"> @((book.Description != null) ? book.Description.Substring(0,
+                                                        Math.Min(book.Description.Length, 100)) + "..." : "")
+                    </p>
+                    <a asp-controller="Book" asp-action="ViewAsPdf" asp-route-id="@book.Id" target="_blank">
+                        Đọc Sách Online
+                    </a>
                 </div>
             </div>
         </div>

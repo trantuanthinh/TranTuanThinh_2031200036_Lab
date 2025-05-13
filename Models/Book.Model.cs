@@ -28,6 +28,7 @@ namespace TranTuanThinh_2031200036_Lab.Models
 
         public int TotalCopies { get; set; }
         public int AvailableCopies { get; set; }
+        public string? PDF { get; set; }
         public DateTime CreatedDate { get; set; }
         public string? Avatar { get; set; }
 

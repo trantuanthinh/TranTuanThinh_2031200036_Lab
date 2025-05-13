@@ -30,6 +30,22 @@ namespace TranTuanThinh_2031200036_Lab.Controllers
             return View(book);
         }
 
+        [Route("Book/ViewAsPdf/{id}")]
+        public IActionResult ViewAsPdf(int id)
+        {
+            // var book = _context
+            //     .Books.Include(item => item.Author)
+            //     .Include(item => item.Category)
+            //     .FirstOrDefault(item => item.Id == id);
+
+            // if (book == null)
+            // {
+            //     return NotFound();
+            // }
+
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

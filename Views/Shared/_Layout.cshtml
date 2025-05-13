@@ -31,7 +31,7 @@
         <nav class="navbar navbar-expand-sm navbar-light bg-white border-top">
             <div class="container-fluid">
                 <ul class="navbar-nav">
-                    @if (TempData["Menu"] is Dictionary<string, Tuple<string, string>> menuItems && menuItems != null)
+                    @if (ViewData["Menu"] is Dictionary<string, Tuple<string, string>> menuItems && menuItems != null)
                     {
                         foreach (var item in menuItems)
                         {
@@ -44,7 +44,6 @@
                             }
                         }
                     }
-
                 </ul>
             </div>
         </nav>
